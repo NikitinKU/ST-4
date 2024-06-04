@@ -7,7 +7,7 @@ namespace BugTests
     {
 
         [TestMethod]
-        public void TestToClosed()
+        public void TestBugClosed()
         {
             var a = new Bug(Bug.State.Assigned);
             a.Close();
@@ -15,7 +15,7 @@ namespace BugTests
         }
 
         [TestMethod]
-        public void ToDeferred()
+        public void TestBugDefered()
         {
             var a = new Bug(Bug.State.Assigned);
             a.Defer();
@@ -23,7 +23,7 @@ namespace BugTests
         }
 
         [TestMethod]
-        public void DeferredToAssigned()
+        public void TestBugDeferedToAssigned()
         {
             var a = new Bug(Bug.State.Defered);
             a.Assign();
@@ -31,7 +31,7 @@ namespace BugTests
         }
 
         [TestMethod]
-        public void AssignIgnoredInAssignedState()
+        public void TestBugAssignIgnoredInAssignedState()
         {
             var a = new Bug(Bug.State.Assigned);
             a.Assign();
@@ -39,7 +39,7 @@ namespace BugTests
         }
 
         [TestMethod]
-        public void ComplexScenario()
+        public void TestBugComplexScenario()
         {
             var a = new Bug(Bug.State.Open);
             a.Assign();
@@ -50,7 +50,7 @@ namespace BugTests
         }
 
         [TestMethod]
-        public void OpenToAssigned()
+        public void TestBugOpenToAssigned()
         {
             var a = new Bug(Bug.State.Open);
             a.Assign();
@@ -58,28 +58,28 @@ namespace BugTests
         }
 
         [TestMethod]
-        public void CloseFromOpenThrowsException()
+        public void TestBugCloseFromOpenThrowsException()
         {
             var a = new Bug(Bug.State.Open);
             Assert.ThrowsException<InvalidOperationException>(() => a.Close());
         }
 
         [TestMethod]
-        public void DeferFromOpenThrowsException()
+        public void TestBugDeferFromOpenThrowsException()
         {
             var a = new Bug(Bug.State.Open);
             Assert.ThrowsException<InvalidOperationException>(() => a.Defer());
         }
 
         [TestMethod]
-        public void CloseFromDeferredThrowsException()
+        public void TestBugCloseFromDeferredThrowsException()
         {
             var a = new Bug(Bug.State.Defered);
             Assert.ThrowsException<InvalidOperationException>(() => a.Close());
         }
 
         [TestMethod]
-        public void ClosedToAssigned()
+        public void TestBugClosedAndAssigned()
         {
             var a = new Bug(Bug.State.Closed);
             a.Assign();
